@@ -1,5 +1,6 @@
 
 import axios from "axios";
+import moment from "moment";
 
 const HomePage = () => {
 
@@ -30,14 +31,22 @@ const HomePage = () => {
             });
     }
 
+    const dataCheck = (label)=>{
+        return `📅 ${moment().format('YYYY/MM/DD HH:mm:ss')}
+            
+💰 ${'قیمت فروش ' + label + ':'} ${63700} تومان 
+
+💰 ${'قیمت خرید ' + label + ':'} ${63700} تومان 
+            `;
+    }
+
     async function sendMessage(chatId = "-1002234611571", text = "hello world") {
         const sendMessageUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-        const Euro= "Euro"
+        const Euro= "یورو"
+        const Dollar= "دلار"
         const payload = {
             chat_id: chatId,
-            text: ` 
-            تاریخ امروز:   
-            قیمت${Euro}\n ${1000}`
+            text: dataCheck(Euro)
         };
 
         try {
