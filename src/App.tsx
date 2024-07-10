@@ -31,22 +31,29 @@ const HomePage = () => {
             });
     }
 
-    const dataCheck = (label)=>{
-        return `📅 ${moment().format('YYYY/MM/DD HH:mm:ss')}
+    const dataCheck = (label, gold=false)=>{
+        return gold ? `📅 ${moment().format('YYYY/MM/DD HH:mm:ss')}
+        
+💰 ${'قیمت ' + label + ':'} ${'3,335,564'} تومان 
+` : `📅 ${moment().format('YYYY/MM/DD HH:mm:ss')}
             
-💰 ${'قیمت فروش ' + label + ':'} ${63700} تومان 
 
-💰 ${'قیمت خرید ' + label + ':'} ${63700} تومان 
-            `;
+💰 ${'قیمت خرید ' + label + ':'} ${'63,200'} تومان 
+
+💰 ${'قیمت فروش ' + label + ':'} ${'63,300'} تومان 
+`;
     }
+    const ee= '-1002161773296'
+    const eeTest= '-1002161773296'
 
-    async function sendMessage(chatId = "-1002234611571", text = "hello world") {
+    async function sendMessage(chatId = ee, text = "hello world") {
         const sendMessageUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
         const Euro= "یورو"
-        const Dollar= "دلار"
+        const Dollar= "دلار آمریکا"
+        const Gold= "طلا(گرم)"
         const payload = {
             chat_id: chatId,
-            text: dataCheck(Euro)
+            text: dataCheck(Gold, true)
         };
 
         try {
